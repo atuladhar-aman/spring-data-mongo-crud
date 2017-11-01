@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-class SequenceRepositoryImplTest {
+class SequenceRepositoryTest {
 
     @Autowired lateinit var sequenceRepository: SequenceRepository
     @Autowired lateinit var mongoOperations: MongoOperations
