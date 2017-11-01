@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field
 import org.springframework.data.mongodb.core.query.Criteria.where
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.Update
+import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 
 /**
@@ -24,14 +25,15 @@ data class Sequence(@Id @Field(Sequence.SEQUENCE_KEY) val sequenceKey: String, @
     }
 }
 
+interface SequenceRepository : MongoRepository<Sequence, Long>, SequenceRepositoryCustom
 
-interface SequenceRepository {
+interface SequenceRepositoryCustom {
     @Throws(SequenceException::class)
     fun getNextId(key: String): Long
 }
 
 @Repository
-class SequenceRepositoryImpl(val mongoOperations: MongoOperations) : SequenceRepository {
+class SequenceRepositoryImpl(val mongoOperations: MongoOperations) : SequenceRepositoryCustom {
     @Throws(SequenceException::class)
     override fun getNextId(key: String): Long {
 
