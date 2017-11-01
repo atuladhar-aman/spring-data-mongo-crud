@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository
 /**
  * @author Aman Tuladhar
  * @since 2017-10-31
+ * @reference https://www.mkyong.com/mongodb/spring-data-mongodb-auto-sequence-id-example/
  */
 
 @Document(collection = Sequence.COLLECTION_NAME)
