@@ -16,11 +16,11 @@ import org.springframework.stereotype.Repository
 interface UserRepository : UserRepositoryCustom, MongoRepository<User, Long>
 
 interface UserRepositoryCustom {
-    fun save(user: User): User
+    fun insert(user: User): User
 }
 
 class UserRepositoryImpl(private val mongoOperations: MongoOperations, private val sequenceRepository: SequenceRepository) : UserRepositoryCustom {
-    override fun save(user: User): User {
+    override fun insert(user: User): User {
         user.id = sequenceRepository.getNextId(User.SEQUENCE_KEY)
         mongoOperations.insert(user)
         return mongoOperations.find(Query(where("_id").`is`(user.id)), User::class.java)!![0]

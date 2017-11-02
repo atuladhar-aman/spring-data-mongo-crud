@@ -26,7 +26,7 @@ class UserRepositoryTest {
 
     @Test
     fun shouldInsertUserWithIdOne() {
-        val user = userRepository.save(User("Aman", "aman@email.com"))
+        val user = userRepository.insert(User("Aman", "aman@email.com"))
         assertThat(user.name, `is`("Aman"))
         assertThat(user.email, `is`("aman@email.com"))
     }
